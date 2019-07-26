@@ -30,3 +30,36 @@
 *.exe
 *.out
 *.app
+
+# Compressed Files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and Db's
+*.log
+*.sql
+*.sqlite
+*.db
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Specific Folders
+build/
+
+# IDE or Editor files and folders
+.idea/
+*.kdev4
+
