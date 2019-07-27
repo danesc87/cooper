@@ -104,10 +104,9 @@ void deleteToDo(Connection *connection, string toDoName) {
 }
 
 void printResults(vector<ToDo> toDoList) {
-    printf("Result:\n\n");
     for (int i = 0; i < toDoList.size(); i++) {
         printf("Name:        %s\n", toDoList[i].name.c_str());
-        printf("Description: %s\n", toDoList[i].description.c_str());
+        printf("Description: %s\n\n", toDoList[i].description.c_str());
     }
 }
 

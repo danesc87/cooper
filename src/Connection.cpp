@@ -116,10 +116,11 @@ private:
     vector<ToDo> retrieveDataFromStatement() {
         vector<ToDo> toDoList;
         ToDo singleToDo;
+        const unsigned char  *name, *description;
         while((rc = sqlite3_step(statement)) == SQLITE_ROW) {
             singleToDo.id = sqlite3_column_int(statement, 0);
-            const unsigned char *name = sqlite3_column_text(statement, 1);
-            const unsigned char *description = sqlite3_column_text(statement,2);
+            name = sqlite3_column_text(statement, 1);
+            description = sqlite3_column_text(statement,2);
             singleToDo.name = (name != NULL) ? (char*)name : "";
             singleToDo.description = 
             (description != NULL) ? (char*)description: "";

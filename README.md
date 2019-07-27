@@ -2,6 +2,7 @@
 **Cooper** is a small TODO list written in CPP with SQLite as DB that has abstracted API from app itself which allows to developers to create a GUI over Cooper - CLI.
 This app can *add*, *list*, *search* by coincidence or exact match and *delete* ToDo's from DB.
 
+* Compile and Tests
 * Add
 * List
 * Search
@@ -12,44 +13,109 @@ This app can *add*, *list*, *search* by coincidence or exact match and *delete* 
 * Logging -> Not Implemented Yet
 * Future features
 
+## COMPILE AND TESTS
+Cooper can be compiled with *cmake* or using a simple bash script called 
+*build_and_test*.
+
+> Unit Tests are made using **Catch2**
+
+#### CMAKE
+In order to compile with *cmake* user should perform the following commando on 
+terminal
+
+```bash
+mkdir build
+cd build
+cmake ..
+make
+```
+> Inside build dir user will see cooper binary file and can execute it
+
+To perform unit tests for *Cooper* user should compile first and then execute 
+the following command on terminal
+
+```bash
+ctest
+```
+> This command should be executed on build dir
+
+#### SCRIPT
+*build_and_test* can perform four actions, those are the following ones:
+
+* build
+* build-test
+* test
+* clean
+
+##### build
+This action creates *build* dir if it doesn't exists and then will compile 
+*Cooper* and generate its binary file
+
+```bash
+./build_and_test build
+```
+
+##### build-test
+This action creates *build* dir if it doesn't exists and then will compile 
+*Cooper* unit tests
+
+```bash
+./build_and_test build-test
+```
+> Only compile Unit Tests for Cooper
+
+##### test
+This action executes unit tests for *Cooper*
+
+```bash
+./build_and_test test
+```
+
+##### clean
+This actions cleans everything and deletes *build* dir
+
+```bash
+./build_and_test clean
+```
+
 ## ADD
 To add new ToDo to *Cooper* user need to execute the following command on 
 terminal
 
 ```bash
-cooper a name:description
+./cooper a name:description
 ```
 Examples
 
 #### ToDo without description
 
 ```bash
-cooper a tests
+./cooper a tests
 ```
 
 If the name has spaces user can add it in the following way
 
 ```bash
-cooper a "call mom"
+./cooper a "call mom"
 ```
 
 #### ToDo with description
 
 ```bash
-cooper a tests:sometest
+./cooper a tests:sometest
 ```
 
 If the name has spaces user can add it in the following way
 
 ```bash
-cooper a "call mom":"I need to call mom"
+./cooper a "call mom":"I need to call mom"
 ```
 
 ## LIST
 If user wants to list all ToDo's user need to execute the following on terminal
 
 ```bash
-cooper l
+./cooper l
 ```
 
 Response will be
@@ -71,7 +137,7 @@ To search all ToDo's that has a coincidence with a provided name user need to
 execute the following command on terminal
 
 ```bash
-cooper s te
+./cooper s te
 ```
 
 This will retrieve all ToDo's that contains *te* in its name
@@ -81,7 +147,7 @@ To search all ToDo's with exact match user need to execute the following
 command on terminal
 
 ```bash
-cooper x test
+./cooper x test
 ```
 
 This will retrieve all ToDo's that has name as *test*
@@ -92,7 +158,7 @@ the same name *Cooper* will delete the first one, in order to perform that task
 user need to execute the following command on terminal
 
 ```bash
-cooper d test
+./cooper d test
 ```
 
 ## Future Features
