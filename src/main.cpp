@@ -2,8 +2,8 @@
 #include <string.h>
 #include <vector>
 #include <sqlite3.h>
-#include "Connection.cpp"
 #include "config.cpp"
+#include "connection.cpp"
 
 using namespace std;
 
@@ -14,7 +14,6 @@ void createTables(Connection*);
 void actionPerformed(Connection*, char*, string);
 void printResults(vector<ToDo>);
 void addNewToDo(Connection*, string);
-void splitString(string&, char, vector<string>&);
 void deleteToDo(Connection*, string);
 void printStatusMessages(tuple<bool, string>, string);
 
@@ -68,21 +67,6 @@ void actionPerformed(
         case 'd': deleteToDo(connection, toDo);
                 break;
         default: cout << "Invalid argument" << endl;            
-    }
-}
-
-void splitString(
-    string &toDo, 
-    char delimiter, 
-    vector<string> &nameAndDescription
-) {
-    int colonPosition = toDo.find_first_of(delimiter);
-    if (colonPosition < 0) {
-        nameAndDescription.push_back(toDo);
-        nameAndDescription.push_back("");
-    } else {
-        nameAndDescription.push_back(toDo.substr(0, colonPosition));
-        nameAndDescription.push_back(toDo.substr(colonPosition + 1));
     }
 }
 

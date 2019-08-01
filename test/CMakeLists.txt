@@ -17,4 +17,5 @@ function(cooper_tests test_name)
     )
 endfunction()
 
+cooper_tests(stringutils_test)
 cooper_tests(config_test)

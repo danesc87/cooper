@@ -1,7 +1,7 @@
 #define CATCH_CONFIG_MAIN
 #include "catch2/catch.hpp"
-#include "../src/config.cpp"
 #include <iostream>
+#include "../src/config.cpp"
 
 const string testDB = "test.db";
 
