@@ -74,6 +74,15 @@ This actions cleans everything and deletes *build* dir
 ./build_and_test.sh clean
 ```
 
+#### DEBUG
+In order to debug this app a parameter should be passed to *build_and_test.sh* script to create a binary that allows user to debug it
+
+```bash
+./build_and_test.sh build -DCMAKE_BUILD_TYPE=Debug
+```
+
+> After pass this argument user can debug the app with **GDB** directly or some IDE like **KDevelop**, **VSCode** with C/C++ plugins, etc
+
 ## ADD
 To add new ToDo to *Cooper* user need to execute the following command on 
 terminal
@@ -152,15 +161,6 @@ This will retrieve all ToDo's that has name as *test*
 ```bash
 ./cooper d test
 ```
-
-## DEBUG
-In order to debug this app a parameter should be passed to *build_and_test.sh* script to create a binary that allows user to debug it
-
-```bash
-./build_and_test.sh build -DCMAKE_BUILD_TYPE=Debug
-```
-
-> After pass this argument user can debug the app with **GDB** directly or some IDE like **KDevelop**, **VSCode** with C/C++ plugins, etc
 
 ## Future Features
 Some future features will be added on this app, those features are the following ones:
