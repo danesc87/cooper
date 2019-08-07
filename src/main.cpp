@@ -3,7 +3,7 @@
 #include <vector>
 #include <sqlite3.h>
 #include "config.cpp"
-#include "connection.cpp"
+#include "cooper.cpp"
 
 using namespace std;
 
@@ -11,10 +11,10 @@ const string cooperDBName = "cooper.db";
 
 void createDatabase(Connection*);
 void createTables(Connection*);
-void actionPerformed(Connection*, char*, string);
+void actionPerformed(Cooper*, char*, string);
 void printResults(vector<ToDo>);
-void addNewToDo(Connection*, string);
-void deleteToDo(Connection*, string);
+void addNewToDo(Cooper*, string);
+void deleteToDo(Cooper*, string);
 void printStatusMessages(tuple<bool, string>, string);
 
 int main(int argc, char *argv[]) {
@@ -26,15 +26,17 @@ int main(int argc, char *argv[]) {
     createDatabase(connection);
     createTables(connection);
     
+    Cooper *cooper = new Cooper(connection);
+
     if(argc < 2) {
        fprintf(stderr, "Too few argumens\n"); 
     } else {
         char *action = argv[1];
         string toDo = (argv[2] != NULL)? (string)argv[2] : "";
-        actionPerformed(connection, action, toDo);
+        actionPerformed(cooper, action, toDo);
     }
     
-    delete connection;
+    delete cooper;
     delete configuration;
     return 0;
 }
@@ -45,32 +47,32 @@ void createDatabase(Connection *connection) {
 }
 
 void createTables(Connection *connection) {
-    tuple<bool, string> createTables = connection->createTables();
+    tuple<bool, string> createTables = connection->createTables(TODOLIST_TABLE);
     printStatusMessages(createTables, "Cannot create tables due to: %s\n");
 }
 
 
 void actionPerformed(
-    Connection *connection,
+    Cooper *cooper,
     char *action,
     string toDo
 ) {
     switch(*action) {
-        case 'a': addNewToDo(connection, toDo);
+        case 'a': addNewToDo(cooper, toDo);
                 break;
-        case 'l': printResults(connection->getAllFromDB());
+        case 'l': printResults(cooper->getAllFromDB());
                 break;
-        case 's': printResults(connection->getByNameFromDB(toDo));
+        case 's': printResults(cooper->getByNameFromDB(toDo));
                 break;
-        case 'x': printResults(connection->getByNameFromDB(toDo, true));
+        case 'x': printResults(cooper->getByNameFromDB(toDo, true));
                 break;
-        case 'd': deleteToDo(connection, toDo);
+        case 'd': deleteToDo(cooper, toDo);
                 break;
         default: cout << "Invalid argument" << endl;            
     }
 }
 
-void addNewToDo(Connection *connection, string toDo) {
+void addNewToDo(Cooper *cooper, string toDo) {
     if(toDo.size() < 1){
         printf("Cannot save Empty ToDo\n"); 
     } else {
@@ -78,12 +80,12 @@ void addNewToDo(Connection *connection, string toDo) {
         splitString(toDo, ':', nameAndDescription);
         string name = nameAndDescription.at(0);
         string description = nameAndDescription.at(1);
-        connection->insertDataIntoTable(name, description);
+        cooper->insertDataIntoTable(name, description);
     }
 }
 
-void deleteToDo(Connection *connection, string toDoName) {
-    tuple<bool, string> wasDeleted = connection->deleteRecordFromDB(toDoName);
+void deleteToDo(Cooper *cooper, string toDoName) {
+    tuple<bool, string> wasDeleted = cooper->deleteRecordFromDB(toDoName);
     printStatusMessages(wasDeleted, "Cannot delete record due to: %s\n");
 }
 

@@ -5,25 +5,29 @@ using namespace std;
 const string CONFIG_PATH = ".config";
 const char SLASH = '/';
 
+/*
+ * Class that holds stuff aorund configurations
+ */
 class Configuration {
+
 public:
-    Configuration(string cooperDBName) :cooperDBName(cooperDBName) {
+    Configuration(string dbName) :dbName(dbName) {
         setFullCooperDBPath();
     }
     
 private:
-    string cooperDBName;
-    string cooperDBFullPath;
+    string dbName;
+    string fullDBPath;
     
     void setFullCooperDBPath() {
         string userPath = getenv("HOME");
-        cooperDBFullPath = userPath + SLASH + CONFIG_PATH + SLASH + cooperDBName;
+        fullDBPath = userPath + SLASH + CONFIG_PATH + SLASH + dbName;
     }
     
 public:
     
     string getFullCooperDBPath() {
-        return cooperDBFullPath;
+        return fullDBPath;
     }
     
 };

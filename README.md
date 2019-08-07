@@ -11,17 +11,16 @@ This app can *add*, *list*, *search* by coincidence or exact match and *delete* 
 * Delete
 * Update -> Not implemented Yet
 * Logging -> Not Implemented Yet
+* Debug
 * Future features
 
 ## COMPILE AND TESTS
-Cooper can be compiled with *cmake* or using a simple bash script called 
-*build_and_test*.
+Cooper can be compiled with *cmake* or using a simple bash script called *build_and_test.sh*.
 
 > Unit Tests are made using **Catch2**
 
 #### CMAKE
-In order to compile with *cmake* user should perform the following commando on 
-terminal
+In order to compile with *cmake* user should perform the following commando on terminal
 
 ```bash
 mkdir build
@@ -31,8 +30,7 @@ make
 ```
 > Inside build dir user will see cooper binary file and can execute it
 
-To perform unit tests for *Cooper* user should compile first and then execute 
-the following command on terminal
+To perform unit tests for *Cooper* user should compile first and then execute the following command on terminal
 
 ```bash
 ctest
@@ -40,7 +38,7 @@ ctest
 > This command should be executed on build dir
 
 #### SCRIPT
-*build_and_test* can perform four actions, those are the following ones:
+*build_and_test.sh* can perform four actions, those are the following ones:
 
 * build
 * build-test
@@ -48,19 +46,17 @@ ctest
 * clean
 
 ##### build
-This action creates *build* dir if it doesn't exists and then will compile 
-*Cooper* and generate its binary file
+This action creates *build* dir if it doesn't exists and then will compile *Cooper* and generate its binary file
 
 ```bash
-./build_and_test build
+./build_and_test.sh build
 ```
 
 ##### build-test
-This action creates *build* dir if it doesn't exists and then will compile 
-*Cooper* unit tests
+This action creates *build* dir if it doesn't exists and then will compile *Cooper* unit tests
 
 ```bash
-./build_and_test build-test
+./build_and_test.sh build-test
 ```
 > Only compile Unit Tests for Cooper
 
@@ -68,14 +64,14 @@ This action creates *build* dir if it doesn't exists and then will compile
 This action executes unit tests for *Cooper*
 
 ```bash
-./build_and_test test
+./build_and_test test.sh
 ```
 
 ##### clean
 This actions cleans everything and deletes *build* dir
 
 ```bash
-./build_and_test clean
+./build_and_test.sh clean
 ```
 
 ## ADD
@@ -133,8 +129,7 @@ Description: test with description
 *Cooper* has two ways for search ToDo's 
 
 ### Coincidence
-To search all ToDo's that has a coincidence with a provided name user need to 
-execute the following command on terminal
+To search all ToDo's that has a coincidence with a provided name user need to execute the following command on terminal
 
 ```bash
 ./cooper s te
@@ -143,8 +138,7 @@ execute the following command on terminal
 This will retrieve all ToDo's that contains *te* in its name
 
 ### Exact
-To search all ToDo's with exact match user need to execute the following 
-command on terminal
+To search all ToDo's with exact match user need to execute the following command on terminal
 
 ```bash
 ./cooper x test
@@ -153,17 +147,23 @@ command on terminal
 This will retrieve all ToDo's that has name as *test*
 
 ## DELETE
-*Cooper* can delete ToDo's from its DB, when user has more than one ToDo with 
-the same name *Cooper* will delete the first one, in order to perform that task 
-user need to execute the following command on terminal
+*Cooper* can delete ToDo's from its DB, when user has more than one ToDo with the same name *Cooper* will delete the first one, in order to perform that task user need to execute the following command on terminal
 
 ```bash
 ./cooper d test
 ```
 
+## DEBUG
+In order to debug this app a parameter should be passed to *build_and_test.sh* script to create a binary that allows user to debug it
+
+```bash
+./build_and_test.sh build -DCMAKE_BUILD_TYPE=Debug
+```
+
+> After pass this argument user can debug the app with **GDB** directly or some IDE like **KDevelop**, **VSCode** with C/C++ plugins, etc
+
 ## Future Features
-Some future features will be added on this app, those features are the 
-following ones:
+Some future features will be added on this app, those features are the following ones:
 
 * Ability to update a ToDo
 * Ability to Log some sutff with different levels
