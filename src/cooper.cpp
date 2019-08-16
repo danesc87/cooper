@@ -1,10 +1,13 @@
-#include "cooper.hpp"
-#include "connection.cpp"
-
 /*
  * Class that contains all stuff that Cooper
  * can do with a Connection to SQLite3 DB
+ * 
+ * @author Daniel Córdova A.
  */
+
+#include "cooper.hpp"
+#include "connection.cpp"
+
 class Cooper {
 
 public:

@@ -1,3 +1,9 @@
+/*
+ * Header for StringUtils
+ * 
+ * @author Daniel Córdova A.
+ */
+
 #ifndef STRING_UTILS
 #define STRING_UTILS
 

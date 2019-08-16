@@ -1,3 +1,10 @@
+/*
+ * Class that holds everything about
+ * operations around SQlite3 DB's
+ * 
+ * @author Daniel Córdova A.
+ */
+
 #include <iostream>
 #include <sqlite3.h>
 #include <tuple>
@@ -5,10 +12,6 @@
 
 using namespace std;
 
-/*
- * Class that holds everything about
- * operations around SQlite3 DB's
- */
 class Connection {
     
 public:

@@ -1,3 +1,8 @@
+/*
+ * Main file of Cooper
+ * 
+ * @author Daniel Córdova A.
+ */
 #include <sstream>
 #include <string.h>
 #include <vector>

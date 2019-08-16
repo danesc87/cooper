@@ -1,3 +1,8 @@
+/*
+ * Class that holds stuff around configurations
+ * 
+ * @author Daniel Córdova A.
+ */
 #include <string>
 
 using namespace std;
@@ -5,9 +10,6 @@ using namespace std;
 const string CONFIG_PATH = ".config";
 const char SLASH = '/';
 
-/*
- * Class that holds stuff aorund configurations
- */
 class Configuration {
 
 public:

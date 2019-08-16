@@ -1,5 +1,7 @@
 /*
- * This header contains models for cooper database
+ * This header contains some stuff for cooper database
+ * 
+ * @author Daniel Córdova A.
  */
 
 #ifndef TODO_LIST

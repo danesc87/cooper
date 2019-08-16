@@ -1,6 +1,8 @@
 /*
  * This file only contains some 
  * helper functions for strings
+ * 
+ * @author Daniel Córdova A.
  */
 
 #include "stringutils.hpp"
