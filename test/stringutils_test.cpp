@@ -21,8 +21,7 @@ TEST_CASE("Should format a string to create a new one") {
 TEST_CASE("Should split some string by ':' and return a vector of strings") {
     string initialString = "Hello:World";
     vector<string> expectedValues {"Hello", "World"};
-    vector<string> currentValues;
-    splitString(initialString, ':', currentValues);
+    vector<string> currentValues = splitString(initialString, ':');
     for (int i = 0; i < currentValues.size(); i++) {
         REQUIRE(currentValues[i] == expectedValues[i]);
     }
@@ -31,8 +30,7 @@ TEST_CASE("Should split some string by ':' and return a vector of strings") {
 TEST_CASE("Should split some string by '~' and return a vector of strings") {
     string initialString = "John~Doe";
     vector<string> expectedValues {"John", "Doe"};
-    vector<string> currentValues;
-    splitString(initialString, '~', currentValues);
+    vector<string> currentValues = splitString(initialString, '~');
     for (int i = 0; i < currentValues.size(); i++) {
         REQUIRE(currentValues[i] == expectedValues[i]);
     }

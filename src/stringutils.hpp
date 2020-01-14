@@ -26,6 +26,6 @@ string formatString(const string stringToFormat, ...);
  * A delimiter
  * A vector
  */
-void splitString(string&, char, vector<string>&);
+vector<string> splitString(string&, char);
 
 #endif

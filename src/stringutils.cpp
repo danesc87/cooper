@@ -6,6 +6,7 @@
  */
 
 #include "stringutils.hpp"
+#include <cstdarg>
 
 string formatString(const string stringToFormat, ...) {
     vector<char> formattedString(100,'\0');
@@ -32,12 +33,11 @@ string formatString(const string stringToFormat, ...) {
 }
 
 
-void splitString(
+vector<string> splitString(
     string &stringToSplit, 
-    char delimiter, 
-    vector<string> &vectorWithSplittedString
+    char delimiter
 ) {
-    // TODO Change this function to return a Vector
+    vector<string> vectorWithSplittedString;
     int colonPosition = stringToSplit.find_first_of(delimiter);
     if (colonPosition < 0) {
         vectorWithSplittedString.push_back(stringToSplit);
@@ -50,4 +50,5 @@ void splitString(
             stringToSplit.substr(colonPosition + 1)
         );
     }
+    return vectorWithSplittedString;
 }
