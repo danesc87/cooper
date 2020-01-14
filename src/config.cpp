@@ -33,10 +33,9 @@ private:
     void setFullCooperDBPath() {
         ReadConfig *readConfig = new ReadConfig();
         readConfig->readConfigFile(fullConfigFilePath);
-        string dbPath = readConfig->getDbPath();
-        printf("DbPath is: %s\n", dbPath.c_str());
-        if (dbPath != "") {
-            fullDBPath = dbPath;
+        string customDbPath = readConfig->getDbPath();
+        if (customDbPath != "") {
+            fullDBPath = customDbPath;
         } else {
             string userPath = getenv("HOME");
             fullDBPath = userPath + SLASH + CONFIG_PATH + SLASH + dbName;

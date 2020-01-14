@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
     );
     
     createDatabase(connection);
-//     createTables(connection);
+    createTables(connection);
     
     Cooper *cooper = new Cooper(connection);
 

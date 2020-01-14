@@ -24,8 +24,6 @@ public:
                 if (key == DB_PATH_KEY) {
                     dbPath = value;
                 }
-                printf("Key is: %s\n", key.c_str());
-                printf("Value is: %s\n", value.c_str());
             }
             configFile.close();
         }
