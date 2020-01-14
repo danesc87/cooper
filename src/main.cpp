@@ -53,7 +53,10 @@ void createDatabase(Connection *connection) {
 
 void createTables(Connection *connection) {
     tuple<bool, string> createTables = connection->createTables(TODOLIST_TABLE);
-    printStatusMessages(createTables, "Cannot create tables due to: %s\n");
+    // Print error only if SQLError is different than already exists
+    if(!strstr(get<1>(createTables).c_str(), "already exists")) {
+        printStatusMessages(createTables, "Cannot create tables due to: %s\n");
+    }
 }
 
 
