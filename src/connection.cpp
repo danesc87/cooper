@@ -8,7 +8,6 @@
 #include <iostream>
 #include <sqlite3.h>
 #include <tuple>
-#include "stringutils.cpp"
 
 using namespace std;
 

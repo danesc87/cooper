@@ -12,7 +12,7 @@
 
 using namespace std;
 
-const string cooperDBName = "cooper.db";
+const string COOPER_DB_NAME = "cooper.db";
 
 void createDatabase(Connection*);
 void createTables(Connection*);
@@ -23,13 +23,13 @@ void deleteToDo(Cooper*, string);
 void printStatusMessages(tuple<bool, string>, string);
 
 int main(int argc, char *argv[]) {
-    Configuration *configuration = new Configuration(cooperDBName);
+    Configuration *configuration = new Configuration(COOPER_DB_NAME);
     Connection *connection = new Connection(
         configuration->getFullCooperDBPath()
     );
     
     createDatabase(connection);
-    createTables(connection);
+//     createTables(connection);
     
     Cooper *cooper = new Cooper(connection);
 
@@ -81,8 +81,7 @@ void addNewToDo(Cooper *cooper, string toDo) {
     if(toDo.size() < 1){
         printf("Cannot save Empty ToDo\n"); 
     } else {
-        vector<string> nameAndDescription;
-        splitString(toDo, ':', nameAndDescription);
+        vector<string> nameAndDescription = splitString(toDo, ':');
         string name = nameAndDescription.at(0);
         string description = nameAndDescription.at(1);
         cooper->insertDataIntoTable(name, description);
