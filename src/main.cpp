@@ -7,6 +7,7 @@
 #include <string.h>
 #include <vector>
 #include <sqlite3.h>
+#include <map>
 #include "config.cpp"
 #include "cooper.cpp"
 
@@ -21,6 +22,8 @@ void printResults(vector<ToDo>);
 void addNewToDo(Cooper*, string);
 void deleteToDo(Cooper*, string);
 void printStatusMessages(tuple<bool, string>, string);
+void printHelp();
+void printHelpOption(char, string);
 
 int main(int argc, char *argv[]) {
     Configuration *configuration = new Configuration(COOPER_DB_NAME);
@@ -34,7 +37,7 @@ int main(int argc, char *argv[]) {
     Cooper *cooper = new Cooper(connection);
 
     if(argc < 2) {
-       fprintf(stderr, "Too few argumens\n"); 
+       printHelp();
     } else {
         char *action = argv[1];
         string toDo = (argv[2] != NULL)? (string)argv[2] : "";
@@ -75,6 +78,8 @@ void actionPerformed(
         case 'x': printResults(cooper->getByNameFromDB(toDo, true));
                 break;
         case 'd': deleteToDo(cooper, toDo);
+                break;
+        case 'h': printHelp();
                 break;
         default: cout << "Invalid argument" << endl;            
     }
@@ -117,3 +122,33 @@ void printStatusMessages(
         );
     }
 }
+
+void printHelp() {
+    map<char, string> options;
+    options.insert(pair<char, string>(
+        'a', 
+        "Add a new ToDo by name:description, separated by ':'\n" 
+        "\tif name or description contains spaces sould be embraced by \"\n"
+        "\tExample:\n\t\t\"new todo name\":\"new todo description\""
+    ));
+    options.insert(pair<char, string>('l', "List all ToDo's on DataBase"));
+    options.insert(pair<char, string>('s', "Search all ToDo's by it's name that contains some word or letter"));
+    options.insert(pair<char, string>('x', "Search only a ToDo by it's name explicitly"));
+    options.insert(pair<char, string>('d', "Deletes a ToDo by it's name explicitly"));
+    options.insert(pair<char, string>('h', "Prints help stuff"));
+    
+    
+    printf("Usage: cooper [option]\n");
+    printf("Options:\n");
+    printHelpOption('a', options.at('a'));
+    printHelpOption('l', options.at('l'));
+    printHelpOption('s', options.at('s'));
+    printHelpOption('x', options.at('x'));
+    printHelpOption('d', options.at('d'));
+    printHelpOption('h', options.at('h'));
+}
+
+void printHelpOption (char option, string description) {
+    printf("  %c\t%s\n", option, description.c_str());
+}
+
